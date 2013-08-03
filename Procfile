@@ -1,1 +1,1 @@
-web: make build; node app.js
+web: make build; NODE_ENV=production node app.js

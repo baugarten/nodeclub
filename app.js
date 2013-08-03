@@ -96,7 +96,7 @@ routes(app);
 if (process.env.NODE_ENV !== 'test') {
   app.listen(process.env.PORT || config.port);
 
-  console.log("NodeClub listening on port %d in %s mode", config.port, app.settings.env);
+  console.log("NodeClub listening on port %d in %s mode", process.env.PORT || config.port, app.settings.env);
   console.log("You can debug your app with http://" + config.hostname + ':' + config.port);
 }
 
