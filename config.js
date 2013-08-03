@@ -28,7 +28,7 @@ exports.config = {
 
   upload_dir: path.join(__dirname, 'public', 'user_data', 'images'),
 
-  db: 'mongodb://127.0.0.1/node_club_dev',
+  db: process.env.MONGOLAB_URL || 'mongodb://127.0.0.1/node_club_dev',
   session_secret: 'austin acroyoga sessions secret',
   auth_cookie_name: 'austin_acroyoga',
   port: 3000,
