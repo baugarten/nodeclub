@@ -1,6 +1,14 @@
 var xss = require('xss');
+var moment = require('moment');
+
+exports.format_date_ago = function (date) {
+  return moment(date).fromNow();
+};
 
 exports.format_date = function (date, friendly) {
+  if (friendly) {
+    return moment(date).fromNow(true);
+  }
   var year = date.getFullYear();
   var month = date.getMonth() + 1;
   var day = date.getDate();

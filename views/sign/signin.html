@@ -1,11 +1,11 @@
 <%- partial('sign/sidebar') %>
 
-<div id='content'>
-	<div class='panel'>
+<div class="row white" >
+	<div class='panel span12'>
 		<div class='header'>
 			<ul class='breadcrumb'>
-				<li><a href='/'>主页</a><span class='divider'>/</span></li>
-				<li class='active'>登录</li>
+				<li><a href='/'>Home</a><span class='divider'>/</span></li>
+				<li class='active'>Sign In</li>
 			</ul>
 		</div>
 		<div class='inner'>
@@ -17,24 +17,24 @@
 			<% } %>
 			<form id='signin_form' class='form-horizontal' action='/signin' method='post'>
 				<div class='control-group'>
-					<label class='control-label' for='name'>用户名</label>
+					<label class='control-label' for='name'>Username</label>
 					<div class='controls'>
 						<input class='input-xlarge' id='name' name='name' size='30' type='text' />
 					</div>
 				</div>
 				<div class='control-group'>
-					<label class='control-label' for='pass'>密码</label>
+					<label class='control-label' for='pass'>Password</label>
 					<div class='controls'>
 						<input class='input-xlarge' id='pass' name='pass' size='30' type='password' />
 					</div>
 				</div>
 				<input type='hidden' name='_csrf' value='<%= csrf %>' />
 				<div class='form-actions'>
-					<input type='submit' class='btn' value='登录' />
+					<input type='submit' class='btn' value='Sign In' />
 				</div>
 				<div class='control-group'>
 					<div class='controls'>
-					<a href='/search_pass'>忘记密码了?</a>
+					<a href='/search_pass'>Forgot your password?</a>
 					</div>
 				</div>
 			</form>

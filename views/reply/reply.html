@@ -17,12 +17,12 @@
       <span class='col_fade'>#<%= indexInCollection + 1 %></span>
       <% if (locals.current_user && current_user._id.toString() == reply.author._id.toString()) { %>
         <a href='javascript:void(0);' class='delete_reply_btn'>
-          <img class='user_icon' src="<%- config.site_static_host %>/public/images/trash_icon&16.png" title='删除' />
+          <img class='user_icon' src="<%- config.site_static_host %>/public/images/trash_icon&16.png" title='Delete' />
         </a>
       <% } %>
       <span>
         <% if(locals.current_user){ %>
-          <a href='javascript:void(0)' class='dark reply2_btn'>回复</a>  
+          <a href='javascript:void(0)' class='dark reply2_btn'>Reply</a>  
         <% } %>
         <!--<% if(reply.replies.length>0){ %>
          <span class='col_fade'>{<%= reply.replies.length %>}</span>
@@ -44,8 +44,8 @@
         <input type='hidden' name='reply_id' value='<%- reply._id %>' />
         <textarea class='span8 editor reply_editor' id="reply2_editor_<%- reply._id %>" name='r2_content' rows='4'></textarea>
         <p style="margin-top: 10px">
-          <button class='btn reply2_submit_btn' type="submit" data-id='<%= reply._id %>'>回复</button>
-          <span class='col_fade'>Ctrl+Enter 快捷回复</span>
+          <button class='btn reply2_submit_btn' type="submit" data-id='<%= reply._id %>'>Reply</button>
+          <span class='col_fade'>Ctrl+Enter to Submit</span>
         </p>
       </form>
       <% } %>

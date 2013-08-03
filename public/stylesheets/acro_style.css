@@ -1,0 +1,259 @@
+body {
+
+	//background-size: cover; 
+	background-color: #fefdf9;
+    background: url('/public/images/yoga/04.jpg');
+
+
+}
+
+
+h1.title {
+    font-family: 'Offside', cursive;
+	//font-family: 'Pathway Gothic One', sans-serif;
+	font-size: 65px;
+	line-height: 65px;
+    color: #76a9be;
+    margin-top: 25px;
+    text-align: center; 
+    padding-bottom: 5px;  
+
+}
+
+.form-actions {
+  background: transparent;
+}
+
+.panel {
+  background: transparent;
+  box-shadow: none;
+}
+
+.panel .header {
+  background-color: transparent;
+  border-bottom: 1px solid;
+  border-color: rgba(255, 255, 255, .6); 
+}
+
+h1.pagetitle {
+    font-size: 35px;
+    margin-top: 25px;
+    color: #04576b;
+}
+
+h3.pagesub {
+    font-size: 25px;
+    margin-top: 5px;
+    color: #04576b;
+
+}
+
+.row.longtext {
+    height: 580px;
+    overflow: scroll;
+}
+p.bodytext {
+    font-size: 16px;
+    color: #333;
+    margin-right: 10px;
+}
+
+.lastitem {
+    padding-bottom: 25px;
+}
+
+ul.bodylist {
+    font-size: 14px;
+    color: #333;
+    margin-right: 25px;
+    margin-left: 25px;
+
+}
+
+h1 a {
+    color: #76a9be;
+}
+
+h1 a:hover {
+    text-decoration: none;
+    color: #76a9be;
+
+}
+
+.topbar {
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,.9);
+}
+
+.topbar.mtop {
+    margin-top: 20px;
+    border-bottom: 2px solid #009ac0;
+}
+
+.white {
+     background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,.9);
+
+}
+
+h2.description {
+   //text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 25px;
+    margin-left: 0px;
+    margin-right: 5px;
+    font-family: 'Armata', sans-serif;
+    word-spacing: 2px;
+   
+}
+
+.icon {
+    width: 45px;
+}
+
+.social {
+    margin-top: 35px;
+    padding-bottom: 35px;
+}
+
+.whitetext {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 25px;
+    margin-left: 10px;
+    font-family: 'Armata', sans-serif;
+    word-spacing: 3px;
+    color: #04576b;
+    vertical-align: center;
+}
+
+.white.bottom {
+    margin-bottom: 50px;
+}
+
+.whitetext a {
+    text-decoration: none;
+    color: #009ac0;
+}
+
+.whitetext a:hover {
+    color: #76a9be;
+}
+
+ #my-carousel ul {
+        position:absolute; /* required */
+        overflow:hidden; /* required */
+        margin:0;
+        padding:0;
+        list-style:none;
+    }
+     
+    #my-carousel ul li {
+        float:left; /* required */
+        //width:300px;
+        height:300px;
+        margin:0 10px 0 0;
+    }
+    #my-carousel ul li img {
+        float:left; /* required */
+        width:400px;
+        height:300px;
+        max-width: none;
+        margin:0 10px 0 0;
+    }
+     
+    #my-carousel .mask {
+        position:relative; /* required */
+        overflow:hidden; /* required */
+        //width:1540px; /* required */
+    }
+     
+    #my-carousel .pagination-links {
+        list-style:none;
+        margin:0;
+        padding:0;
+    }
+     
+    #my-carousel .pagination-links li {
+        display:inline;
+
+    }
+     
+    #my-carousel .pagination-links li.current {
+        background:grey;
+    }
+     
+    #my-carousel .disabled {
+        color:grey;
+    }
+
+    #my-carousel a {
+        color: rgb(255,255,255); 
+        color: rgba(255,255,255,0.9);       
+        text-decoration: none;
+    }
+
+    #my-carousel a.next {
+        margin-left: 5px;
+    }
+
+    .carou {
+//margin-top: 25px;
+padding-top: 25px;
+    }
+
+.menumain {
+  display: table;
+  color: #009ac0;
+  height: 100%;
+  //background-color: #009ac0;
+}
+
+.menumain a {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  color: inherit;
+  text-decoration: none;
+  font-family: 'Armata', sans-serif;
+  font-size: 20px;
+
+}
+
+a:hover {
+    text-decoration: none; 
+}
+
+.menumain:hover {
+    color: #fff;
+    background-color: #009ac0;
+
+}
+
+#etiquette .etiquette, #resources a.resources {
+  color: #fff;
+  background-color: #009ac0;
+}
+
+.menubar {
+    border-bottom: 2px solid #009ac0;
+    height: 80px;
+}
+
+a.small {
+    padding-left: 65px;
+    padding-right: 65px;
+}
+#banner-fade {
+    margin: 0 auto;
+}
+
+.span12.gallery {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
+
+

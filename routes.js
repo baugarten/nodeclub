@@ -25,7 +25,7 @@ var status = require('./controllers/status');
 
 module.exports = function (app) {
   // home page
-  app.get('/', site.index);
+  app.get('/forum', site.index);
 
   // sign up, login, logout
   app.get('/signup', sign.showSignup);
@@ -45,7 +45,7 @@ module.exports = function (app) {
   app.get('/user/:name', user.index);
   app.get('/setting', user.showSetting);
   app.post('/setting', user.setting);
-  app.get('/stars', user.show_stars);
+//  app.get('/stars', user.show_stars);
   app.get('/users/top100', user.top100);
   app.get('/user/:name/tags', user.get_collect_tags);
   app.get('/user/:name/collections', user.get_collect_topics);
@@ -108,8 +108,10 @@ module.exports = function (app) {
   app.get('/site_tools', tools.run_site_tools);
 
   // static
+  app.get('/', assets.index);
   app.get('/about', assets.about);
   app.get('/faq', assets.faq);
+  app.get('/etiquette', assets.etiquette);
 
   //rss
   app.get('/rss', rss.index);

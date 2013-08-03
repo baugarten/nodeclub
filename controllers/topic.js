@@ -65,7 +65,9 @@ exports.index = function (req, res, next) {
     topic.save(ep.done(function () {
       // format date
       topic.friendly_create_at = Util.format_date(topic.create_at, true);
+      topic.friendly_create_at_ago = Util.format_date_ago(topic.create_at);
       topic.friendly_update_at = Util.format_date(topic.update_at, true);
+      topic.friendly_update_at_ago = Util.format_date_ago(topic.update_at);
 
       topic.tags = tags;
       topic.author = author;

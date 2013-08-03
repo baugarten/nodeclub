@@ -75,7 +75,7 @@ exports.signup = function (req, res, next) {
       // 发送激活邮件
       mail.sendActiveMail(email, md5(email + config.session_secret), name, email);
       res.render('sign/signup', {
-        success: '欢迎加入 ' + config.name + '！我们已给您的注册邮箱发送了一封邮件，请点击里面的链接来激活您的帐号。'
+        success: 'Welcome to ' + config.name + '. Registration successful'
       });
     });
   });
@@ -132,7 +132,7 @@ exports.login = function (req, res, next) {
     if (!user.active) {
       // 从新发送激活邮件
       mail.sendActiveMail(user.email, md5(user.email + config.session_secret), user.name, user.email);
-      return res.render('sign/signin', { error: '此帐号还没有被激活，激活链接已发送到 ' + user.email + ' 邮箱，请查收。' });
+      return res.render('sign/signin', { error: "You haven't activated your account yet. We sent an email to " + user.email });
     }
     // store session cookie
     gen_session(user, res);

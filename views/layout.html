@@ -16,6 +16,10 @@
       .css('/public/libs/bootstrap/css/bootstrap.css')
       .css('/public/stylesheets/common.css')
       .css('/public/stylesheets/style.css')
+      .css('/public/stylesheets/acro_style.css')
+      .css('/public/stylesheets/bjqs.css')
+      .css('/public/stylesheets/common.css')
+      .css('/public/stylesheets/demo.css')
       .css('/public/libs/code-prettify/prettify.css')
       .done(assets, config.site_static_host, config.mini_assets)
     %>
@@ -29,6 +33,8 @@
       .js('/public/libs/jquery/jquery.js')
       .js('/public/libs/bootstrap/js/bootstrap.js')
       .js('/public/javascripts/main.js')
+      .js('/public/javascripts/bjqs-1.3.js')
+      .js('/public/javascripts/player.js')
       .done(assets, config.site_static_host, config.mini_assets)
     %>
     <% if (config.site_enable_search_preview) { %>
@@ -36,6 +42,8 @@
       var __google_search_domain = '<%= config.site_google_search_domain || "" %>';
     </script>
     <script src='/public/javascripts/google_search_preview.js'></script>
+    <link href='http://fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
     <% } %>
     <% if (locals.topic) { %>
     <title><%= topic.title %> - <%= config.name %></title>
@@ -44,62 +52,30 @@
     <% } %>
   </head>
   <body>
-    <!-- navbar -->
-    <div class='navbar'>
-      <div class='navbar-inner'>
-        <div class='container'>
-          <a class='brand' href='/'><%- config.site_logo || config.name %></a>
-          <form id='search_form' class='navbar-search' action="/">
-            <input type='text' id='q' name='q' class='search-query span3' value='<%= locals.keyword || '' %>'/>
-          </form>
-          <ul class='nav pull-right'>
-            <li><a href='/'>首页</a></li>
-            <%
-            var site_navs = config.site_navs || [];
-            for (var i = 0, l = site_navs.length; i < l; i++) {
-              var nav = site_navs[i];
-            %>
-            <li><a href="<%- nav[0] %>" target="<%- nav[2] %>"><%- nav[1] %></a></li>
-            <% } %>
-            <% if (locals.current_user) { %>
-            <li>
-              <a href="/user/<%= current_user.name %>" title="查看我的主页"> Me </a>
-            </li>
-            <li><a href='/setting'>设置</a></li>
-            <li>
-              <a href='/signout'>退出</a>
-            </li>
-            <% } else { %>
-            <li><a href='/signup'>注册</a></li>
-            <li><a href='/signin'>登录</a></li>
-            <% } %>
-          </ul>
+    <div class="container">
+      <div class="row topbar mtop">
+        <div class="span12 namehold">
+          <h1 class="title"><a href="/">Austin AcroYoga</a></h1> 
         </div>
       </div>
-    </div>
-    <!-- wrapper -->
-    <div id='wrapper'>
-      <div id='main'>
-        <%- body %>
-      </div>
-    </div>
-    <div id='backtotop'>回到顶部</div>
-    <div id='footer'>
-      <div id='footer_main'>
-        <div class="links">
-          <a class='dark' href='/about'><strong>关于</strong></a>
-          |
-          <a class='dark' href='/faq'><strong>FAQ</strong></a>
-          |
-          <a class='dark' href='https://github.com/cnodejs/nodeclub/' target="_blank"><strong>Github</strong></a>
-          |
-          <a class='dark' href='/rss' target="_blank"><strong>RSS</strong></a>
+
+      <div class="row topbar menubar">
+
+        <div class="menumain span2"><a class="first" href="/calendar">Calendar</a>
         </div>
-        <div class='col_fade'>
-          &copy; 2012 - 2013 <br>本社区为开源系统，版本: <%= config.version %> ，欢迎贡献代码<br>
-          由<a href='http://cnodejs.net' target='_blank'> NAE </a>为 <%= config.name %> 提供动力
+        <div class="menumain span2 etiquette"><a class="second" href="/etiquette">Etiquette</a>
         </div>
-      </div>
-    </div>
+        <div class=" menumain span2"><a class="third" href="/forum">Forum</a>
+        </div>
+
+        <div class="menumain span2"><a class="fourth" class="small" href="/faq">FAQ</a>
+        </div>
+        <div class="menumain span2"><a class="fifth" href="/gallery">Gallery</a>
+        </div>
+        <div class="menumain span2"><a class="last resources" href="/resources">Resources</a>
+        </div>
+
+      </div> 
+    <%- body %>
   </body>
 </html>

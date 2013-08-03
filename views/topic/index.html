@@ -1,4 +1,4 @@
-<div id='sidebar'>
+<!-- <div id='sidebar'>
   <div class='panel'>
     <div class='header'>
       <span class='col_fade'>作者</span>
@@ -38,20 +38,18 @@
     </div>
   </div>
 </div>
+-->
 
-<div id='content'>
-  <div class='panel'>
+<div class="row white"> 
+  <div class='panel span12'>
     <div class='header'>
       <ul class='breadcrumb'>
-        <li><a href='/'>主页</a><span class='divider'>/</span></li>
-        <li class='active'>话题详情</li>
+        <li><a href='/'>Home</a><span class='divider'>/</span></li>
+        <li class='active'>Topic</li>
       </ul>
     </div>
     <div class='inner topic'>
       <h3>
-      <% if (topic.top) { %>
-        <span class='put_top'>置顶</span>
-      <% } %>
         <%= topic.title %>
       </h3>
       <hr>
@@ -61,31 +59,27 @@
       <hr>
       <div class="tags">
         <% if (topic.tags.length > 0) { %>
-        <span class='col_fade'>标签：</span> 
+        <span class='col_fade'>Labels:</span> 
         <%- partial('tag/tag_in_topic',{ collection: topic.tags, as: 'tag' }) %>
         <% } else { %>
-        <span class='col_fade'>标签：无</span>  
         <% } %>
       </div>
       <div class="changes">
         <span class='col_fade'>
-          <a class='dark' href="/user/<%= topic.author.name %>"><%= topic.author.name %></a> 在 <%= topic.friendly_create_at %> 发布
+          <a class='dark' href="/user/<%= topic.author.name %>">Posted <%= topic.friendly_create_at_ago %>
         </span>
         <% if (topic.friendly_create_at != topic.friendly_update_at) { %>
         <span class='col_fade'>
-          <a class='dark' href="/user/<%= topic.author.name %>"><%= topic.author.name %></a> 在 <%= topic.friendly_update_at %> 重新编辑
+          <a class='dark' href="/user/<%= topic.author.name %>">Updated <%= topic.friendly_update_at %>
         </span>
         <% } %>
       </div>
       <div class="action">
-        <a class='dark' id='share_weibo_btn'
-          href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=<%= config.weibo_key %>',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','分享来自<%= config.name %>的话题：<%= topic.title %>','',''));"
-          >分享到 weibo</a>
         <% if (locals.current_user) { %>
           <% if (!topic.in_collection) { %>
-          <button class='btn btn-success' id='collect_btn' action='collect'>加入收藏</button>
+          <button class='btn btn-success' id='collect_btn' action='collect'>Like</button>
           <% } else { %>
-          <button class='btn' id='collect_btn' action='de_collect'>取消收藏</button>
+          <button class='btn' id='collect_btn' action='de_collect'>Unlike</button>
           <% } %>
         <% } %>
         <% if (locals.current_user) { %>
@@ -95,21 +89,23 @@
           <% } else { %>
             <a href='/topic/<%= topic._id %>/top/1'><img class='user_icon' src='<%- config.site_static_host %>/public/images/star_fav_icon&16.png' title='置顶' /></a>
           <% } %>
-          <a href='/topic/<%= topic._id %>/edit'><img class='user_icon' src='<%- config.site_static_host %>/public/images/doc_edit_icon&16.png' title='编辑' /></a>
+          <a href='/topic/<%= topic._id %>/edit'><img class='user_icon' src='<%- config.site_static_host %>/public/images/doc_edit_icon&16.png' title='Edit' /></a>
           <a href='javascript:;' data-id="<%= topic._id %>" class='delete_topic_btn'><img class='user_icon' src='<%- config.site_static_host %>/public/images/trash_icon&16.png' title='删除' /></a>
           <% } else { %>
             <% if (current_user._id == topic.author_id) { %>
-            <a href='/topic/<%= topic._id %>/edit'><img class='user_icon' src='<%- config.site_static_host %>/public/images/doc_edit_icon&16.png' title='编辑' /></a>
+            <a href='/topic/<%= topic._id %>/edit'><img class='user_icon' src='<%- config.site_static_host %>/public/images/doc_edit_icon&16.png' title='Edit' /></a>
             <% } %>
           <% } %>
         <% } %>
       </div>
     </div>
   </div>  
+</div>
   <% if (topic.replies && topic.replies.length > 0) { %>
-  <div class='panel'>
+<div class="row white">
+  <div class='panel span12'>
     <div class='header'>
-      <span class='col_fade'><%= topic.replies.length %> 回复</span>
+      <span class='col_fade'><%= topic.replies.length %> <%= (topic.replies.length > 1) ? "Replies" : "Reply" %></span>
     </div>
     <%- partial('reply/reply', topic.replies) %>
   </div>
@@ -117,15 +113,15 @@
   <% if (locals.current_user && locals.topic) { %>
   <div class='panel'>
     <div class='header'>
-      <span class='col_fade'>添加回复</span>
+      <span class='col_fade'>Reply</span>
     </div>
     <div class='inner reply'>
       <form id='reply_form' action='/<%= topic._id %>/reply' method='post'>
         <div class='tabbable'>
-          <ul class='nav nav-pills'>
+          <!--<ul class='nav nav-pills'>
             <li class='active'><a href='#markdown' data-toggle='pill'>markdown</a></li>
-            <!-- <li><a href='#preview' data-toggle='pill' class="preview-btn">预览</a></li> -->
-          </ul>
+            <li><a href='#preview' data-toggle='pill' class="preview-btn">Preview</a></li> 
+          </ul>-->
           <div class='tab-content'>
             <div class='tab-pane active' id='markdown'>
               <div id='wmd-button-bar'></div>
@@ -138,13 +134,13 @@
           <input type='hidden' name='_csrf' id="_csrf" value='<%= csrf %>' />
         </div>
 
-        <button id='submit_btn' class='btn'>回复</button>
-        <span class='col_fade'>Ctrl+Enter 快捷回复</span>
+        <button id='submit_btn' class='btn'>Comment</button>
+        <span class='col_fade'>Ctrl+Enter to Submit</span>
       </form>
     </div>
   </div>
-  <% } %>
 </div>
+  <% } %>
 
 <% if (locals.current_user && locals.topic) { %>
 <!-- ajaxupload -->
@@ -205,10 +201,10 @@
       $.post('/topic/' + action, data, function(data) {
         if (data.status === 'success') {
           if (action == 'collect') {
-            $me.html('取消收藏');
+            $me.html('Unlike');
             $me.attr('action','de_collect');
           } else {
-            $me.html('加入收藏');
+            $me.html('Like');
             $me.attr('action','collect');
           }
           $me.toggleClass('btn-success'); 
@@ -218,7 +214,7 @@
 
     $('.delete_reply_btn, .delete_reply2_btn').live('click', function() {
       var $me = $(this);
-      if (confirm('确定要删除此回复吗？')) {
+      if (confirm('Are you sure you want to delete?')) {
         var reply_id = null;
         if ($me.hasClass('delete_reply_btn')) {
           reply_id = $me.parents('.reply_item').attr('reply_id');
@@ -242,11 +238,11 @@
         }, 'json'); 
       } 
       return false;
-    }); 
+    }); t
 
     $('.delete_topic_btn').click(function () {
       var topicId = $(this).data('id');
-      if (topicId && confirm('确定要删除此话题吗？')) {
+      if (topicId && confirm('Are you sure you want to delete?')) {
         $.post('/topic/' + topicId + '/delete', { _csrf: $('#_csrf').val() }, function (result) {
           if (!result.success) {
             alert(result.message);
@@ -263,7 +259,7 @@
       $(this).focus(function(){
         var parent = $(this).parent().parent().parent().parent();
         var btn = parent.find('button');
-        if(btn.html() == '回复'){
+        if(btn.html() == 'Comment'){
           submit_btn = btn;
         }
       });

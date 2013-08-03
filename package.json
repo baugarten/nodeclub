@@ -3,7 +3,10 @@
   "version": "0.3.5",
   "main": "app.js",
   "private": true,
-  "customHost": ["cnodejs.org", "club.cnodejs.org"],
+  "customHost": [
+    "cnodejs.org",
+    "club.cnodejs.org"
+  ],
   "dependencies": {
     "express": "2.5.1",
     "ejs": "0.8.4",
@@ -17,7 +20,8 @@
     "utility": "0.0.x",
     "marked-prettyprint": "0.2.8",
     "xss": "0.0.5",
-    "loader": "0.0.5"
+    "loader": "0.0.5",
+    "moment": "~2.1.0"
   },
   "devDependencies": {
     "should": "*",

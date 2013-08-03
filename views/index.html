@@ -1,13 +1,13 @@
-<%- partial('sidebar') %>
 
-<div id="content">
-  <div class="panel">
+<div class="row white">
+  <div class="panel span12">
     <div class="inner">
       <div class="header clearfix">
-        当前话题
+        <!-- 当前话题 -->
+        Austin AcroYoga
         <% if (locals.current_user) { %>
           <a href='/topic/create' id='create_topic_btn'>
-            <button class='btn btn-success'>发布话题</button>
+            <button class='btn btn-success'>New Topic</button>
           </a>
         <% } %>
       </div>
@@ -19,9 +19,10 @@
         base: keyword ? ('/?q=' + keyword) : '/'
       }) %>
       <% } else { %>
-      <div class='inner'>
-        <p>无话题</p>
-      </div>
+        <div class='inner'>
+          <!-- <p>无话题</p> -->
+          <p>No topics found</p>
+        </div>
       <% } %>
     </div>
   </div>
