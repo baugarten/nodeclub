@@ -1,1 +1,1 @@
-web: node app.js
+web: make build; node app.js
