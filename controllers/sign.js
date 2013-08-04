@@ -166,17 +166,17 @@ exports.active_account = function (req, res, next) {
       return next(err);
     }
     if (!user || md5(user.email + config.session_secret) !== key) {
-      return res.render('notify/notify', {error: '信息有误，帐号无法被激活。'});
+      return res.render('notify/notify', {error: 'Hmm... something went wrong. Maybe try again'});
     }
     if (user.active) {
-      return res.render('notify/notify', {error: '帐号已经是激活状态。'});
+      return res.render('notify/notify', {error: 'The account is already active'});
     }
     user.active = true;
     user.save(function (err) {
       if (err) {
         return next(err);
       }
-      res.render('notify/notify', {success: '帐号已被激活，请登录'});
+      res.render('notify/notify', {success: 'Account activated! Please login'});
     });
   });
 };
