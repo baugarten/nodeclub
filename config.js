@@ -15,6 +15,7 @@ exports.config = {
     '<meta name="author" content="Ben Augarten" />',
   ],
   host: 'localhost',
+  hostname: 'austin-acroyoga.herokuapp.com',
   site_logo: '', // default is `name`
   site_navs: [
     [ '/etiquette', 'Etiquette']

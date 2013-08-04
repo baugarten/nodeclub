@@ -4,7 +4,7 @@ var marked = require('marked-prettyprint');
 
 var transport = mailer.createTransport('SMTP', config.mail_opts);
 
-var SITE_ROOT_URL = 'http://' + config.hostname + (config.port !== 80 ? ':' + config.port : '');
+var SITE_ROOT_URL = 'http://' + config.hostname;
 
 /**
  * Send an email
@@ -37,12 +37,9 @@ var sendMail = function (data) {
 exports.sendActiveMail = function (who, token, name) {
   var from = config.mail_opts.auth.user;
   var to = who;
-  var subject = config.name + '社区帐号激活';
-  var html = '<p>您好：<p/>' +
-    '<p>我们收到您在' + config.name + '社区的注册信息，请点击下面的链接来激活帐户：</p>' +
-    '<a href="' + SITE_ROOT_URL + '/active_account?key=' + token + '&name=' + name + '">激活链接</a>' +
-    '<p>若您没有在' + config.name + '社区填写过注册信息，说明有人滥用了您的电子邮箱，请删除此邮件，我们对给您造成的打扰感到抱歉。</p>' +
-    '<p>' + config.name + '社区 谨上。</p>';
+  var subject = config.name + ' Activation Link';
+  var html = '<p>Thanks for registering for Austin AcroYoga<p/>' +
+    'Please click <a href="' + SITE_ROOT_URL + '/active_account?key=' + token + '&name=' + name + '">here</a> to activate your account.';
 
   sendMail({
     from: from,
