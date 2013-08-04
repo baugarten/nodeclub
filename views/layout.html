@@ -76,6 +76,21 @@
         </div>
 
       </div> 
+    <% if (!locals.static) { %>
+      <div class="row white">
+        <div class="panel span12">
+          <div class="header">
+            <% if (locals.current_user) { %>
+              <a href="/user/<%= current_user.name %>"><%= current_user.name %></a>
+              <a href="/signout">Sign out</a>
+            <% } else { %>
+              <a href="/signin">Sign in</a>
+              <a href="/signup">Sign up</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    <% } %>
     <%- body %>
   </body>
 </html>

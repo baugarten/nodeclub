@@ -100,6 +100,7 @@ var notJump = [
   '/active_account', //active page
   '/reset_pass',     //reset password page, avoid to reset twice
   '/signup',         //regist page
+  '/signin',         //regist page
   '/search_pass'    //serch pass page
 ];
 
@@ -137,13 +138,14 @@ exports.login = function (req, res, next) {
     // store session cookie
     gen_session(user, res);
     //check at some page just jump to home page
-    var refer = req.session._loginReferer || 'home';
+    var refer = req.session._loginReferer || '/';
     for (var i = 0, len = notJump.length; i !== len; ++i) {
       if (refer.indexOf(notJump[i]) >= 0) {
-        refer = 'home';
+        refer = '/';
         break;
       }
     }
+    console.log("Redirecting", refer);
     res.redirect(refer);
   });
 };

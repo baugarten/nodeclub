@@ -112,6 +112,9 @@ module.exports = function (app) {
   app.get('/about', assets.about);
   app.get('/faq', assets.faq);
   app.get('/etiquette', assets.etiquette);
+  app.get('/gallery', assets.gallery);
+  app.get('/resources', assets.resources);
+  app.get('/calendar', assets.calendar);
 
   //rss
   app.get('/rss', rss.index);
