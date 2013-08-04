@@ -5,7 +5,7 @@
 var path = require('path');
 
 exports.config = {
-  debug: true,
+  debug: false,
   name: 'Austin AcroYoga',
   description: '',
   version: '0.0.1',
