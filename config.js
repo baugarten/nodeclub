@@ -68,11 +68,10 @@ exports.config = {
 
   // mail SMTP
   mail_opts: {
-    host: 'smtp.126.com',
-    port: 25,
+    service: "Gmail",
     auth: {
-      user: 'club@126.com',
-      pass: 'club'
+      user: 'austin.acroyoga@gmail.com',
+      pass: 'austin@acroyoga3726'
     }
   },
 
