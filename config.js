@@ -14,7 +14,7 @@ exports.config = {
   site_headers: [
     '<meta name="author" content="Ben Augarten" />',
   ],
-  host: 'localhost',
+  host: 'austin-acroyoga.herokuapp.com',
   hostname: 'austin-acroyoga.herokuapp.com',
   site_logo: '', // default is `name`
   site_navs: [
