@@ -18,6 +18,7 @@
       .css('/public/stylesheets/style.css')
       .css('/public/stylesheets/acro_style.css')
       .css('/public/stylesheets/bjqs.css')
+      .css('/public/stylesheets/jquery.fancybox.css')
       .css('/public/stylesheets/common.css')
       .css('/public/stylesheets/demo.css')
       .css('/public/libs/code-prettify/prettify.css')
@@ -36,6 +37,7 @@
       .js('/public/libs/bootstrap/js/bootstrap.js')
       .js('/public/javascripts/main.js')
       .js('/public/javascripts/bjqs-1.3.js')
+      .js('/public/javascripts/jquery.fancybox.js')
       .js('/public/javascripts/player.js')
       .done(assets, config.site_static_host, config.mini_assets)
     %>
@@ -61,7 +63,7 @@
 
       <div class="row topbar menubar">
 
-        <div class="menumain span2"><a class="first" href="/calendar">Calendar</a>
+        <div class="menumain first span2"><a class="calendar" href="/calendar">Calendar</a>
         </div>
         <div class="menumain span2 etiquette"><a class="second" href="/etiquette">Etiquette</a>
         </div>
@@ -72,7 +74,7 @@
         </div>
         <div class="menumain span2"><a class="fifth" href="/gallery">Gallery</a>
         </div>
-        <div class="menumain span2"><a class="last resources" href="/resources">Resources</a>
+        <div class="menumain thingy span2"><a class="last resources" href="/resources">Resources</a>
         </div>
 
       </div> 

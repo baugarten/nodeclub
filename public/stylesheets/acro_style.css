@@ -2,8 +2,9 @@ body {
 
 	//background-size: cover; 
 	background-color: #fefdf9;
-    background: url('/public/images/yoga/04.jpg');
-
+    //background: url('/public/images/yoga/04.jpg');
+    background: url('/public/images/yoga/austin_bg.jpg');
+    backgroun
 
 }
 
@@ -212,13 +213,18 @@ padding-top: 25px;
 
 .menumain a {
   display: table-cell;
-  text-align: center;
+ text-align: center;
   vertical-align: middle;
   color: inherit;
   text-decoration: none;
   font-family: 'Armata', sans-serif;
   font-size: 20px;
 
+
+}
+
+.first.span2 {
+    margin-left: 0px;
 }
 
 a:hover {
@@ -231,14 +237,14 @@ a:hover {
 
 }
 
-#etiquette .etiquette, #resources a.resources {
+#etiquette .etiquette, #resources a.resources, #calendar a.calendar {
   color: #fff;
   background-color: #009ac0;
 }
 
 .menubar {
     border-bottom: 2px solid #009ac0;
-    height: 80px;
+    height: 59px;
 }
 
 a.small {
@@ -254,6 +260,26 @@ a.small {
     margin-right: 0px;
 }
 
+.cal.span12 {
+    margin-left: 0px;
+}
 
+.span2.thingy {
+    margin-left: 40px;
+}
+
+.calgallery {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+
+.row.images {
+    margin-top: 10px;
+}
+
+.pushdown {
+    padding-bottom: 45px;
+}
 
 

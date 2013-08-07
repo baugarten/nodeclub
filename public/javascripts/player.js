@@ -10,6 +10,8 @@
             showcontrols : false
           });
 
+          $(".fancybox").fancybox();
+
         });
 
 
