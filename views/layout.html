@@ -21,6 +21,8 @@
       .css('/public/stylesheets/common.css')
       .css('/public/stylesheets/demo.css')
       .css('/public/libs/code-prettify/prettify.css')
+      .css('http://fonts.googleapis.com/css?family=Offside')
+      .css('http://fonts.googleapis.com/css?family=Armata')
       .done(assets, config.site_static_host, config.mini_assets)
     %>
     <% if (locals.extra_style) { %>
@@ -42,8 +44,6 @@
       var __google_search_domain = '<%= config.site_google_search_domain || "" %>';
     </script>
     <script src='/public/javascripts/google_search_preview.js'></script>
-    <link href='http://fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
     <% } %>
     <% if (locals.topic) { %>
     <title><%= topic.title %> - <%= config.name %></title>
