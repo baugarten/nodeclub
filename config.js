@@ -5,7 +5,7 @@
 var path = require('path');
 
 exports.config = {
-  debug: true,
+  debug: false,
   name: 'Austin AcroYoga',
   description: '',
   version: '0.0.1',
@@ -14,8 +14,8 @@ exports.config = {
   site_headers: [
     '<meta name="author" content="Ben Augarten" />',
   ],
-  host: 'localhost',
-  hostname: 'localhost',
+  host: 'austin-acroyoga.herokuapp.com',
+  hostname: 'austin-acroyoga.herokuapp.com',
   site_logo: '', // default is `name`
   site_navs: [
     [ '/etiquette', 'Etiquette']
