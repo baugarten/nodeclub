@@ -20,7 +20,7 @@
     "utility": "0.0.x",
     "marked-prettyprint": "0.2.8",
     "xss": "0.0.5",
-    "loader": "0.0.5",
+    "loader": "git://github.com/baugarten/loader.git#master",
     "moment": "~2.1.0"
   },
   "devDependencies": {
