@@ -30,7 +30,7 @@ exports.index = function (req, res, next) {
   var topic_id = req.params.tid;
   if (topic_id.length !== 24) {
     return res.render('notify/notify', {
-      error: '此话题不存在或已被删除。'
+      error: 'This topic does not exist or has been deleted.'
     });
   }
   var events = ['topic', 'other_topics', 'no_reply_topics', 'get_relation', '@user'];
@@ -131,7 +131,7 @@ exports.put = function (req, res, next) {
           }
         }
       }
-      res.render('topic/edit', {tags: tags, edit_error: '标题不能是空的。', content: content});
+      res.render('topic/edit', {tags: tags, edit_error: 'Title cannot be empty.', content: content});
     });
   } else if (title.length < 10 || title.length > 100) {
     Tag.getAllTags(function (err, tags) {
@@ -145,7 +145,7 @@ exports.put = function (req, res, next) {
           }
         }
       }
-      res.render('topic/edit', {tags: tags, edit_error: '标题字数太多或太少', title: title, content: content});
+      res.render('topic/edit', {tags: tags, edit_error: 'The title is too long or too short.', title: title, content: content});
     });
   } else {
     Topic.newAndSave(title, content, req.session.user._id, function (err, topic) {
@@ -198,12 +198,12 @@ exports.showEdit = function (req, res, next) {
 
   var topic_id = req.params.tid;
   if (topic_id.length !== 24) {
-    res.render('notify/notify', {error: '此话题不存在或已被删除。'});
+    res.render('notify/notify', {error: 'This topic does not exist or has been deleted.'});
     return;
   }
   Topic.getTopicById(topic_id, function (err, topic, tags) {
     if (!topic) {
-      res.render('notify/notify', {error: '此话题不存在或已被删除。'});
+      res.render('notify/notify', {error: 'This topic does not exist or has been deleted.'});
       return;
     }
     if (String(topic.author_id) === req.session.user._id || req.session.user.is_admin) {
@@ -222,7 +222,7 @@ exports.showEdit = function (req, res, next) {
         res.render('topic/edit', {action: 'edit', topic_id: topic._id, title: topic.title, content: topic.content, tags: all_tags});
       });
     } else {
-      res.render('notify/notify', {error: '对不起，你不能编辑此话题。'});
+      res.render('notify/notify', {error: 'Sorry, you cannot edit this topic.'});
     }
   });
 };
@@ -234,13 +234,13 @@ exports.update = function (req, res, next) {
   }
   var topic_id = req.params.tid;
   if (topic_id.length !== 24) {
-    res.render('notify/notify', {error: '此话题不存在或已被删除。'});
+    res.render('notify/notify', {error: 'This topic does not exist or has been deleted.'});
     return;
   }
 
   Topic.getTopicById(topic_id, function (err, topic, tags) {
     if (!topic) {
-      res.render('notify/notify', {error: '此话题不存在或已被删除。'});
+      res.render('notify/notify', {error: 'This topic does not exist or has been deleted.'});
       return;
     }
 
@@ -265,7 +265,7 @@ exports.update = function (req, res, next) {
               }
             }
           }
-          res.render('topic/edit', {action: 'edit', edit_error: '标题不能是空的。', topic_id: topic._id, content: content, tags: all_tags});
+          res.render('topic/edit', {action: 'edit', edit_error: 'Title cannot be empty.', topic_id: topic._id, content: content, tags: all_tags});
         });
       } else {
         //保存话题
@@ -330,7 +330,7 @@ exports.update = function (req, res, next) {
         });
       }
     } else {
-      res.render('notify/notify', {error: '对不起，你不能编辑此话题。'});
+      res.render('notify/notify', {error: 'Sorry, you cannot edit this topic.'});
     }
   });
 };
@@ -341,24 +341,24 @@ exports.delete = function (req, res, next) {
   //删除topic_tag，标签topic_count减1
   //删除topic_collect，用户collect_topic_count减1
   if (!req.session.user || !req.session.user.is_admin) {
-    return res.send({success: false, message: '无权限'});
+    return res.send({success: false, message: 'You do not have proper permissions.'});
   }
   var topic_id = req.params.tid;
   if (topic_id.length !== 24) {
-    return res.send({ success: false, error: '此话题不存在或已被删除。' });
+    return res.send({ success: false, error: 'This topic does not exist or has been deleted.' });
   }
   Topic.getTopic(topic_id, function (err, topic) {
     if (err) {
       return res.send({ success: false, message: err.message });
     }
     if (!topic) {
-      return res.send({ success: false, message: '此话题不存在或已被删除。' });
+      return res.send({ success: false, message: 'This topic does not exist or has been deleted.' });
     }
     topic.remove(function (err) {
       if (err) {
         return res.send({ success: false, message: err.message });
       }
-      res.send({ success: true, message: '话题已被删除。' });
+      res.send({ success: true, message: 'This topic has been removed.' });
     });
   });
 };
@@ -371,7 +371,7 @@ exports.top = function (req, res, next) {
   var topic_id = req.params.tid;
   var is_top = req.params.is_top;
   if (topic_id.length !== 24) {
-    res.render('notify/notify', {error: '此话题不存在或已被删除。'});
+    res.render('notify/notify', {error: 'This topic does not exist or has been deleted.'});
     return;
   }
   Topic.getTopic(topic_id, function (err, topic) {
@@ -379,7 +379,7 @@ exports.top = function (req, res, next) {
       return next(err);
     }
     if (!topic) {
-      res.render('notify/notify', {error: '此话题不存在或已被删除。'});
+      res.render('notify/notify', {error: 'This topic does not exist or has been deleted.'});
       return;
     }
     topic.top = is_top;
@@ -387,7 +387,7 @@ exports.top = function (req, res, next) {
       if (err) {
         return next(err);
       }
-      var msg = topic.top ? '此话题已经被置顶。' : '此话题已经被取消置顶。';
+      var msg = topic.top ? 'This message has been featured.' : 'This message has been unfeatured.';
       res.render('notify/notify', {success: msg});
     });
   });

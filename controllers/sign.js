@@ -26,29 +26,29 @@ exports.signup = function (req, res, next) {
   re_pass = sanitize(re_pass).xss();
 
   if (name === '' || pass === '' || re_pass === '' || email === '') {
-    res.render('sign/signup', {error: '信息不完整。', name: name, email: email});
+    res.render('sign/signup', {error: 'Information is incomplete.', name: name, email: email});
     return;
   }
 
   if (name.length < 5) {
-    res.render('sign/signup', {error: '用户名至少需要5个字符。', name: name, email: email});
+    res.render('sign/signup', {error: 'Username must be at least 5 characters.', name: name, email: email});
     return;
   }
 
   try {
-    check(name, '用户名只能使用0-9，a-z，A-Z。').isAlphanumeric();
+    check(name, 'Username can only include 0-9，a-z，A-Z.').isAlphanumeric();
   } catch (e) {
     res.render('sign/signup', {error: e.message, name: name, email: email});
     return;
   }
 
   if (pass !== re_pass) {
-    res.render('sign/signup', {error: '两次密码输入不一致。', name: name, email: email});
+    res.render('sign/signup', {error: 'Passwords do not match.', name: name, email: email});
     return;
   }
 
   try {
-    check(email, '不正确的电子邮箱。').isEmail();
+    check(email, 'Please enter a valid email.').isEmail();
   } catch (e) {
     res.render('sign/signup', {error: e.message, name: name, email: email});
     return;
@@ -59,7 +59,7 @@ exports.signup = function (req, res, next) {
       return next(err);
     }
     if (users.length > 0) {
-      res.render('sign/signup', {error: '用户名或邮箱已被使用。', name: name, email: email});
+      res.render('sign/signup', {error: 'Username or email has already been used.', name: name, email: email});
       return;
     }
 
@@ -116,7 +116,7 @@ exports.login = function (req, res, next) {
   var pass = sanitize(req.body.pass).trim();
 
   if (!loginname || !pass) {
-    return res.render('sign/signin', { error: '信息不完整。' });
+    return res.render('sign/signin', { error: 'Information is incomplete.' });
   }
 
   User.getUserByLoginName(loginname, function (err, user) {
@@ -124,11 +124,11 @@ exports.login = function (req, res, next) {
       return next(err);
     }
     if (!user) {
-      return res.render('sign/signin', { error: '这个用户不存在。' });
+      return res.render('sign/signin', { error: 'User does not exist.' });
     }
     pass = md5(pass);
     if (pass !== user.pass) {
-      return res.render('sign/signin', { error: '密码错误。' });
+      return res.render('sign/signin', { error: 'Incorrect password.' });
     }
     if (!user.active) {
       // 从新发送激活邮件
@@ -201,7 +201,7 @@ exports.updateSearchPass = function (req, res, next) {
   var retrieveTime = new Date().getTime();
   User.getUserByMail(email, function (err, user) {
     if (!user) {
-      res.render('sign/search_pass', {error: '没有这个电子邮箱。', email: email});
+      res.render('sign/search_pass', {error: 'That email address is not registered.', email: email});
       return;
     }
     user.retrieve_key = retrieveKey;
@@ -212,7 +212,7 @@ exports.updateSearchPass = function (req, res, next) {
       }
       // 发送重置密码邮件
       mail.sendResetPassMail(email, retrieveKey, user.name);
-      res.render('notify/notify', {success: '我们已给您填写的电子邮箱发送了一封邮件，请在24小时内点击里面的链接来重置密码。'});
+      res.render('notify/notify', {success: 'Email sent. Please click the link inside to reset your password. '});
     });
   });
 };
@@ -230,12 +230,12 @@ exports.reset_pass = function (req, res, next) {
   var name = req.query.name;
   User.getUserByQuery(name, key, function (err, user) {
     if (!user) {
-      return res.render('notify/notify', {error: '信息有误，密码无法重置。'});
+      return res.render('notify/notify', {error: 'Could not find that user.'});
     }
     var now = new Date().getTime();
     var oneDay = 1000 * 60 * 60 * 24;
     if (!user.retrieve_time || now - user.retrieve_time > oneDay) {
-      return res.render('notify/notify', {error : '该链接已过期，请重新申请。'});
+      return res.render('notify/notify', {error : 'This link has expired, please re-apply.'});
     }
     return res.render('sign/reset', {name : name, key : key});
   });
@@ -247,14 +247,14 @@ exports.update_pass = function (req, res, next) {
   var key = req.body.key || '';
   var name = req.body.name || '';
   if (psw !== repsw) {
-    return res.render('sign/reset', {name : name, key : key, error : '两次密码输入不一致。'});
+    return res.render('sign/reset', {name : name, key : key, error : 'Passwords do not match.'});
   }
   User.getUserByQuery(name, key, function (err, user) {
     if (err) {
       return next(err);
     }
     if (!user) {
-      return res.render('notify/notify', {error : '错误的激活链接'});
+      return res.render('notify/notify', {error : 'This is not a valid activation link.'});
     }
     user.pass = md5(psw);
     user.retrieve_key = null;
@@ -264,7 +264,7 @@ exports.update_pass = function (req, res, next) {
       if (err) {
         return next(err);
       }
-      return res.render('notify/notify', {success: '你的密码已重置。'});
+      return res.render('notify/notify', {success: 'Your password has been reset.'});
     });
   });
 };

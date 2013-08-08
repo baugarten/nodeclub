@@ -18,7 +18,7 @@ exports.add = function (req, res, next) {
 
   var str = sanitize(content).trim();
   if (str === '') {
-    res.render('notify/notify', {error: '回复内容不能为空！'});
+    res.render('notify/notify', {error: 'Comment cannot be empty!'});
     return;
   }
 

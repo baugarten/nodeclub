@@ -90,7 +90,7 @@ exports.showSetting = function (req, res, next) {
       return next(err);
     }
     if (req.query.save === 'success') {
-      user.success = '保存成功。';
+      user.success = 'Sucessfully saved.';
     }
     user.error = null;
     return res.render('user/setting', user);
@@ -129,7 +129,7 @@ exports.setting = function (req, res, next) {
         if ((url.indexOf('http://') < 0) && (url.indexOf('https://') < 0)) {
           url = 'http://' + url;
         }
-        check(url, '不正确的个人网站。').isUrl();
+        check(url, 'Invalid website.').isUrl();
       } catch (e) {
         res.render('user/setting', {
           error: e.message,
@@ -152,7 +152,7 @@ exports.setting = function (req, res, next) {
         if (weibo.indexOf('http://') < 0) {
           weibo = 'http://' + weibo;
         }
-        check(weibo, '不正确的微博地址。').isUrl();
+        check(weibo, 'Invalid blog address.').isUrl();
       } catch (e) {
         res.render('user/setting', {
           error: e.message,
@@ -206,7 +206,7 @@ exports.setting = function (req, res, next) {
 
       if (old_pass !== user.pass) {
         res.render('user/setting', {
-          error: '当前密码不正确。',
+          error: 'Current password is incorrect.',
           name: user.name,
           email: user.email,
           url: user.url,
@@ -231,7 +231,7 @@ exports.setting = function (req, res, next) {
           return next(err);
         }
         res.render('user/setting', {
-          success: '密码已被修改。',
+          success: 'Your password has been changed.',
           name: user.name,
           email: user.email,
           url: user.url,
@@ -482,7 +482,7 @@ exports.list_topics = function (req, res, next) {
 
   User.getUserByName(user_name, function (err, user) {
     if (!user) {
-      res.render('notify/notify', {error: '这个用户不存在。'});
+      res.render('notify/notify', {error: 'User does not exist.'});
       return;
     }
 
@@ -525,7 +525,7 @@ exports.list_replies = function (req, res, next) {
 
   User.getUserByName(user_name, function (err, user) {
     if (!user) {
-      res.render('notify/notify', {error: '这个用户不存在。'});
+      res.render('notify/notify', {error: 'User does not exist.'});
       return;
     }
 

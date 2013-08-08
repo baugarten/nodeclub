@@ -19,7 +19,7 @@ exports.list_topic = function (req, res, next) {
       return next(err);
     }
     if (!tag) {
-      return res.render('notify/notify', {error: '没有这个标签。'});
+      return res.render('notify/notify', {error: 'Invalid tag.'});
     }
     var done = function (topic_ids, collection, hot_topics, no_reply_topics, pages) {
       var query = {'_id': {'$in': topic_ids}};
@@ -84,11 +84,11 @@ exports.list_topic = function (req, res, next) {
 
 exports.edit_tags = function (req, res, next) {
   if (!req.session.user) {
-    res.render('notify/notify', {error: '你还没有登录。'});
+    res.render('notify/notify', {error: 'You are not logged in.'});
     return;
   }
   if (!req.session.user.is_admin) {
-    res.render('notify/notify', {error: '管理员才能编辑标签。'});
+    res.render('notify/notify', {error: 'Only administrators can edit the tags.'});
     return;
   }
   Tag.getAllTags(function (err, tags) {
@@ -114,7 +114,7 @@ exports.add = function (req, res, next) {
   var order = req.body.order;
 
   if (name === '') {
-    res.render('notify/notify', {error: '信息不完整。'});
+    res.render('notify/notify', {error: 'Information incomplete.'});
     return;
   }
 
@@ -123,7 +123,7 @@ exports.add = function (req, res, next) {
       return next(err);
     }
     if (tags && tags.length > 0) {
-      res.render('notify/notify', {error: '这个标签已存在。'});
+      res.render('notify/notify', {error: 'This tag already exists.'});
       return;
     }
     Tag.newAndSave(name, background, order, description, function (err) {
@@ -142,7 +142,7 @@ exports.edit = function (req, res, next) {
       return next(err);
     }
     if (!tag) {
-      res.render('notify/notify', {error: '没有这个标签。'});
+      res.render('notify/notify', {error: 'Invalid tag.'});
       return;
     }
 
@@ -163,7 +163,7 @@ exports.update = function (req, res, next) {
       return next(err);
     }
     if (!tag) {
-      res.render('notify/notify', {error: '没有这个标签。'});
+      res.render('notify/notify', {error: 'Invalid tag.'});
       return;
     }
 
@@ -175,7 +175,7 @@ exports.update = function (req, res, next) {
     var description = sanitize(req.body.description).trim();
     description = sanitize(description).xss();
     if (name === '') {
-      res.render('notify/notify', {error: '信息不完整。'});
+      res.render('notify/notify', {error: 'Information is incomplete.'});
       return;
     }
     tag.name = name;
@@ -193,11 +193,11 @@ exports.update = function (req, res, next) {
 
 exports.delete = function (req, res, next) {
   if (!req.session.user) {
-    res.render('notify/notify', {error: '你还没有登录。'});
+    res.render('notify/notify', {error: 'You are not logged in.'});
     return;
   }
   if (!req.session.user.is_admin) {
-    res.render('notify/notify', {error: '管理员才能编辑标签。'});
+    res.render('notify/notify', {error: 'Only administrators can edit this tag.'});
     return;
   }
   var tag_name = req.params.name;
@@ -206,7 +206,7 @@ exports.delete = function (req, res, next) {
       return next(err);
     }
     if (!tag) {
-      res.render('notify/notify', {error: '没有这个标签。'});
+      res.render('notify/notify', {error: 'Invalid tag.'});
       return;
     }
     var proxy = new EventProxy();
