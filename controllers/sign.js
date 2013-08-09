@@ -75,7 +75,7 @@ exports.signup = function (req, res, next) {
       // 发送激活邮件
       mail.sendActiveMail(email, md5(email + config.session_secret), name, email);
       res.render('sign/signup', {
-        success: 'Welcome to ' + config.name + '. Registration successful'
+        success: 'Welcome to ' + config.name + '. Registration successful. Please check your email to activate your account.'
       });
     });
   });
@@ -166,17 +166,17 @@ exports.active_account = function (req, res, next) {
       return next(err);
     }
     if (!user || md5(user.email + config.session_secret) !== key) {
-      return res.render('notify/notify', {error: 'Hmm... something went wrong. Maybe try again'});
+      return res.render('notify/notify', {error: 'Hmm... something went wrong. Please try again.'});
     }
     if (user.active) {
-      return res.render('notify/notify', {error: 'The account is already active'});
+      return res.render('notify/notify', {error: 'This account is already active'});
     }
     user.active = true;
     user.save(function (err) {
       if (err) {
         return next(err);
       }
-      res.render('notify/notify', {success: 'Account activated! Please login'});
+      res.render('notify/notify', {success: 'Account activated! Please login.'});
     });
   });
 };
