@@ -2,12 +2,6 @@
 
 <div id='content'>
 	<div class='panel'>
-		<div class='header'>
-			<ul class='breadcrumb'>
-				<li><a href='/'>Home</a><span class='divider'>/</span></li>
-				<li class='active'><%= user.name %>'s labels</li>
-			</ul>
-		</div>
 		<div class='inner'>
 			<% if (tags.length > 0) { %>
 			<%- partial('tag/tag', { collection: tags, as: 'tag' }) %>			
