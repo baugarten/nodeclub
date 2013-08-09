@@ -66,7 +66,7 @@ exports.signup = function (req, res, next) {
     // md5 the pass
     pass = md5(pass);
     // create gavatar
-    var avatar_url = 'http://www.gravatar.com/avatar/' + md5(email.toLowerCase()) + '?size=48';
+    var avatar_url = '../public/images/yoga/December-2007.png' + md5(email.toLowerCase()) + '?size=48';
 
     User.newAndSave(name, loginname, pass, email, avatar_url, false, function (err) {
       if (err) {
