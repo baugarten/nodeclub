@@ -43,6 +43,7 @@ h1.pagetitle {
 }
 
 h3.pagesub {
+    cursor: pointer;
     font-size: 25px;
     margin-top: 5px;
     color: #04576b;
